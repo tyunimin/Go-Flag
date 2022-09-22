@@ -75,7 +75,7 @@ GAME_SCENE LongMode_HARD::Update(const DX::StepTimer& timer)
 	m_pPlayer->Update();
 	m_playerPos = m_pPlayer->GetPosition();
 	//床の当たり判定
-	if(HitCheck(m_playerPos,SimpleMath::Vector3(0.0f,0.0f,0.0f),12.0f,1.0f,12.0f))
+	if(HitCheck(m_playerPos,SimpleMath::Vector3(0.0f,-1.0f,0.0f),12.0f,1.0f,12.0f))
 	{
 		if (m_playerPos.y < -0.02f)
 			m_playerPos.y = 0.0f;
@@ -90,7 +90,7 @@ GAME_SCENE LongMode_HARD::Update(const DX::StepTimer& timer)
 	}
 	//床を動かす処理
 	MoveFloor();
-	//床の当たり判定
+	//浮いてる床の当たり判定
 	for (int i = 0; i < FLOOR; i++)
 	{
 		if (HitCheck(m_playerPos, m_floorPos[i], 1.0f, 1.0f, 1.0f))
@@ -117,7 +117,7 @@ GAME_SCENE LongMode_HARD::Update(const DX::StepTimer& timer)
 
 	//フェード関係--------------------------------------------------
 	SimpleMath::Vector3 Pos = m_playerPos;
-	if (Pos.y < 0|| m_Sceneflag)
+	if (Pos.y < -1.0f|| m_Sceneflag)
 		{m_blackalpha += 0.01f;}
 	if (m_blackalpha >= 0.0f && m_cflag == false)
 		{m_blackalpha -= 0.01f;}
