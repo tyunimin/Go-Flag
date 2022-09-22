@@ -82,6 +82,8 @@ private:
 	ADX2* m_pAdx2;
 	int m_musicID;
 
+	int m_playerJcount;
+	DirectX::Keyboard::KeyboardStateTracker m_keyTracker;
 public:
 	// コンストラクタ
 	PlayScene();

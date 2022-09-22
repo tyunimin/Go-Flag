@@ -21,7 +21,8 @@ LongMode::LongMode():
 	m_goalPos{SimpleMath::Vector3::Zero},
 	m_cflag(false),
 	m_blackalpha(1.0f),
-	m_Sceneflag(false)
+	m_Sceneflag(false),
+	m_playerJcount(0)
 {
 	DX::DeviceResources* pDR = DX::DeviceResources::GetInstance();
 	ID3D11Device1* device = pDR->GetD3DDevice();
@@ -70,6 +71,7 @@ void LongMode::Initialize()
 
 GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 {
+	m_pPlayer->Update();
 	m_playerPos = m_pPlayer->GetPosition();
 	//床の当たり判定
 	if(HitCheck(m_playerPos,SimpleMath::Vector3(0.0f,0.0f,0.0f),12.0f,0.5f,12.0f))
@@ -78,6 +80,7 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 			m_playerPos.y = 0.0f;
 		m_pPlayer->SetPosition(m_playerPos);
 		m_pPlayer->JumpCountHeal();
+		m_playerJcount = 0;
 	}
 	//奥の壁の当たり判定
 	if (HitCheck(m_playerPos, m_wall_back, 25.0f, 2000.0f, 1.0f))
@@ -95,6 +98,7 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 				m_playerPos.y = m_floorPos[i].y + 1.0f;
 				m_pPlayer->SetPosition(m_playerPos);
 				m_pPlayer->JumpCountHeal();
+				m_playerJcount = 0;
 			}
 			else
 			{
@@ -126,8 +130,15 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 	if (m_blackalpha >= 1.0f && m_Sceneflag == true)
 		return GAME_SCENE::RESULT;
 	//--------------------------------------------------------------
-	
-	m_pPlayer->Update();
+
+	//キーボード情報
+	Keyboard::State keyState = Keyboard::Get().GetState();
+	m_keyTracker.Update(keyState);
+
+	if (m_keyTracker.IsKeyPressed(Keyboard::Space))
+		m_playerJcount++;
+	if (m_playerJcount > 1)
+		m_playerJcount = 2;
 	return GAME_SCENE::NONE;
 }
 
@@ -179,6 +190,31 @@ void LongMode::Draw()
 	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));
 	m_spriteBatch->Draw(m_fade_picture.Get(), SimpleMath::Vector2{ 0,0 }, &rect, 
 		SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha });
+	switch (m_playerJcount)
+	{
+	case 0:
+		//2個表示
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(540, 550),
+			&rect, SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(740, 550),
+			&rect, SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		break;
+	case 1:
+		//1個表示														 
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(540, 550),
+			&rect, SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(740, 550),
+			&rect, SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		break;
+	case 2:
+		//0個表示														 
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(540, 550),
+			&rect, SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		m_spriteBatch->Draw(m_jump_Icon.Get(), SimpleMath::Vector2(740, 550),
+			&rect, SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
+		break;
+	}
+
 	m_spriteBatch->End();
 }
 
