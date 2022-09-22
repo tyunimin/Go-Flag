@@ -9,8 +9,7 @@ Player::Player():
 	m_position(DirectX::SimpleMath::Vector3::Zero),
 	m_rotation(0.0f),
 	m_flag(false),
-	m_canjump(true),
-	m_jump_count(2),
+	m_jump_count(0),
 	m_vel(0.0f,0.0f,0.0f)
 {
 }
@@ -92,10 +91,9 @@ void Player::Jump(DirectX::Keyboard::KeyboardStateTracker KeyState)
 	m_vel.y -= Grav;
 	m_position.y += m_vel.y;
 
-	if (KeyState.IsKeyPressed(DirectX::Keyboard::Space)&&m_canjump==true)
+	if (KeyState.IsKeyPressed(DirectX::Keyboard::Space)&&m_jump_count<2)
 	{
 		m_vel.y = 1.0f;
-		m_canjump=false;
 		m_pAdx2->Play(CRI_CUESHEET_0_SE_JUMP06);
 	}
 
@@ -161,8 +159,12 @@ SimpleMath::Vector3 Player::SetPosition(SimpleMath::Vector3 position)
 	return m_position = position;
 }
 
-bool Player::JumpCountHeal()
+int Player::JumpCountHeal()
 {
-	m_canjump = true;
-	return m_canjump;
+	return m_jump_count = 0;
+}
+
+int Player::GetJumpCount(int x)
+{
+	return m_jump_count = x;
 }

@@ -22,7 +22,6 @@ private:
 
 	bool m_flag;
 
-	bool m_canjump;
 	int m_jump_count;
 
 	DirectX::SimpleMath::Vector3 m_position;
@@ -44,7 +43,9 @@ public:
 	void Rotation();
 	void Move(DirectX::Keyboard::State KeyState);
 
-	bool JumpCountHeal();
+	int JumpCountHeal();
+
+	int GetJumpCount(int x);
 
 	DirectX::SimpleMath::Vector3 GetPosition();
 	DirectX::SimpleMath::Vector3 SetPosition(DirectX::SimpleMath::Vector3 position);
