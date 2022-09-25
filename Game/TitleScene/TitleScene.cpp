@@ -21,8 +21,7 @@ TitleScene::TitleScene():
 	m_alpha(1.0f),
 	m_blackalpha(1.0f),
 	m_flag(false),
-	m_cflag(false),
-	m_SceneSelect(0)
+	m_cflag(false)
 {
 }
 
@@ -77,23 +76,6 @@ GAME_SCENE TitleScene::Update(const DX::StepTimer& timer)
 
 	if (keyState.Z)
 	{
-		m_SceneSelect = 1;
-		m_cflag = true;
-		//効果音再生
-		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
-	}
-
-	if (keyState.X)
-	{
-		m_SceneSelect = 2;
-		m_cflag = true;
-		//効果音再生
-		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
-	}
-
-	if (keyState.C)
-	{
-		m_SceneSelect = 3;
 		m_cflag = true;
 		//効果音再生
 		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
@@ -121,18 +103,7 @@ GAME_SCENE TitleScene::Update(const DX::StepTimer& timer)
 
 	if (m_blackalpha >= 1.1f)
 	{
-		switch (m_SceneSelect)
-		{
-		case 1:
-			return GAME_SCENE::PLAY;
-			break;
-		case 2:
-			return GAME_SCENE::LONGMODE;
-			break;
-		case 3:
-			return GAME_SCENE::LONGMODE_HARD;
-			break;
-		}
+		return GAME_SCENE::MODE_SELECT;
 	}
 
 	return GAME_SCENE::NONE;
@@ -144,7 +115,7 @@ GAME_SCENE TitleScene::Update(const DX::StepTimer& timer)
 void TitleScene::Draw()
 {
 	RECT rect = { 0,0,600,100 };
-	RECT rec={ 0,0,1280,720 };
+	RECT rec={ 0,0,1280,1020 };
 	FXMVECTOR color = DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_alpha };//原色に指定色を掛け合わせる
 	FXMVECTOR black = DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha };
 	float rotation = 0.0f;							//回転角度をラジアンで指定する
@@ -156,16 +127,12 @@ void TitleScene::Draw()
 	m_spriteBatch->Begin(SpriteSortMode_Deferred, m_commonState->NonPremultiplied());
 
 	SimpleMath::Vector2 pos(0, 0);
-	SimpleMath::Vector2 pos_Z(400, 300);
-	SimpleMath::Vector2 pos_X(100, 400);
-	SimpleMath::Vector2 pos_C(700, 400);
+	SimpleMath::Vector2 pos_Z(400, 500);
 
 	m_spriteBatch->Draw(m_texture.Get(), pos);
 
 	m_spriteBatch->Draw(m_texture_Z.Get(), pos_Z, &rec, color, rotation, origin, scale, effects, layerDepth);
-	m_spriteBatch->Draw(m_texture_X.Get(), pos_X, &rec, color, rotation, origin, scale, effects, layerDepth);
-	m_spriteBatch->Draw(m_texture_C.Get(), pos_C, &rec, color, rotation, origin, scale, effects, layerDepth);
-
+	m_spriteBatch->Draw(m_criware_texture.Get(), SimpleMath::Vector2{ 1180,620 },&rec, FXMVECTOR{ 1.0f,1.0f,1.0f,1.0f }, rotation, origin, 0.1f, effects, layerDepth);
 	m_spriteBatch->Draw(m_texture_black.Get(), pos, &rec, black, rotation, origin, scale, effects, layerDepth);
 
 	m_spriteBatch->End();
@@ -209,20 +176,12 @@ void TitleScene::LoadResources()
 		nullptr,
 		m_texture_black.ReleaseAndGetAddressOf()
 	);
-
 	// テクスチャの読み込み
 	CreateWICTextureFromFile(
 		device,
-		L"Resources/Textures/Press_X.png",
+		L"Resources/Textures/CRIWARELOGO_1.png",
 		nullptr,
-		m_texture_X.ReleaseAndGetAddressOf()
+		m_criware_texture.ReleaseAndGetAddressOf()
 	);
 
-	// テクスチャの読み込み
-	CreateWICTextureFromFile(
-		device,
-		L"Resources/Textures/Press_C.png",
-		nullptr,
-		m_texture_C.ReleaseAndGetAddressOf()
-	);
 }

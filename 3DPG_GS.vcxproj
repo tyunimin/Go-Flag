@@ -194,6 +194,7 @@
     <ClInclude Include="Game\LoadingScreen\LoadingScreen.h" />
     <ClInclude Include="Game\LongMode\LongMode.h" />
     <ClInclude Include="Game\LongMode_HARD\LongMode_HARD.h" />
+    <ClInclude Include="Game\ModeSelect\ModeSelect.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\PlayScene\PlayScene.h" />
     <ClInclude Include="Game\ResultScene\ResultScene.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Game\LoadingScreen\LoadingScreen.cpp" />
     <ClCompile Include="Game\LongMode\LongMode.cpp" />
     <ClCompile Include="Game\LongMode_HARD\LongMode_HARD.cpp" />
+    <ClCompile Include="Game\ModeSelect\ModeSelect.cpp" />
     <ClCompile Include="Game\Player\Player.cpp" />
     <ClCompile Include="Game\PlayScene\PlayScene.cpp" />
     <ClCompile Include="Game\ResultScene\ResultScene.cpp" />

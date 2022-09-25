@@ -168,7 +168,7 @@ void LongMode::Draw()
 
 	//‰œ‚Ì•Ç---------------------------------------------------------------------------------
 	world = DirectX::SimpleMath::Matrix::Identity;
-	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 2000.0f, 1.0f);
+	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 2200.0f, 1.0f);
 	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_wall_back.x, m_wall_back.y+990.0f, m_wall_back.z);
 	m_pwall->Draw(context, *m_commonState.get(), world, view, projection);
 	//---------------------------------------------------------------------------------------

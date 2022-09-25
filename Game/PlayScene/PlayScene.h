@@ -6,7 +6,6 @@
 #include <CommonStates.h>
 
 #include "../IScene.h"
-#include "Game/GameMain.h"
 #include"../Player/Player.h"
 #include "Libraries/MyLibraries/Camera.h"
 

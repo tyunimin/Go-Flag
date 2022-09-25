@@ -62,6 +62,9 @@
     <Filter Include="Game\LongMode_HARD">
       <UniqueIdentifier>{bb9d06fd-d3d9-4da5-bec6-7646da613282}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\ModeSelect">
+      <UniqueIdentifier>{23802033-4dd0-4976-b1ff-511b8910babf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -123,6 +126,9 @@
     <ClInclude Include="Game\LongMode_HARD\LongMode_HARD.h">
       <Filter>Game\LongMode_HARD</Filter>
     </ClInclude>
+    <ClInclude Include="Game\ModeSelect\ModeSelect.h">
+      <Filter>Game\ModeSelect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="Game\LongMode_HARD\LongMode_HARD.cpp">
       <Filter>Game\LongMode_HARD</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ModeSelect\ModeSelect.cpp">
+      <Filter>Game\ModeSelect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

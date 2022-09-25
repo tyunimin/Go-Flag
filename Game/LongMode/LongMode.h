@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../IScene.h"
-#include "Game/GameMain.h"
+
 #include "Libraries/MyLibraries/Camera.h"
 #include"../Player/Player.h"
 

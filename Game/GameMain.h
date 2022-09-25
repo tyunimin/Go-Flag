@@ -19,6 +19,7 @@ enum class GAME_SCENE : int
     PLAY,
     LONGMODE,
     LONGMODE_HARD,
+    MODE_SELECT,
     RESULT,
 };
 

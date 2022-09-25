@@ -15,6 +15,7 @@
 #include "Game/LongMode/LongMode.h"
 #include"Game/LongMode_HARD/LongMode_HARD.h"
 #include"Game/LoadingScreen/LoadingScreen.h"
+#include"Game/ModeSelect/ModeSelect.h"
 
 // –¼‘O‹óŠÔ‚Ì—˜—p
 using namespace DirectX;
@@ -165,6 +166,11 @@ void GameMain::CreateScene()
 	case GAME_SCENE::LONGMODE_HARD:
 	{
 		m_pScene = new LongMode_HARD();
+		break;
+	}
+	case GAME_SCENE::MODE_SELECT:
+	{
+		m_pScene = new ModeSelect();
 		break;
 	}
 	default:
