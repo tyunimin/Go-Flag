@@ -116,8 +116,10 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 
 	//フェード関係--------------------------------------------------
 	SimpleMath::Vector3 Pos = m_pPlayer->GetPosition();
-	if (Pos.y < 0|| m_Sceneflag)
+	if (Pos.y < 0)
 		{m_blackalpha += 0.01f;}
+	if (m_Sceneflag == true)
+		m_blackalpha += 0.01f;
 	if (m_blackalpha >= 0.0f && m_cflag == false)
 		{m_blackalpha -= 0.01f;}
 	if (m_blackalpha < 0.0f && m_cflag == false)
@@ -168,7 +170,7 @@ void LongMode::Draw()
 
 	//奥の壁---------------------------------------------------------------------------------
 	world = DirectX::SimpleMath::Matrix::Identity;
-	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 2200.0f, 1.0f);
+	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 4200.0f, 1.0f);
 	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_wall_back.x, m_wall_back.y+990.0f, m_wall_back.z);
 	m_pwall->Draw(context, *m_commonState.get(), world, view, projection);
 	//---------------------------------------------------------------------------------------

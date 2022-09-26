@@ -38,6 +38,7 @@ private:
 	std::unique_ptr<DirectX::Model> m_pGround;
 	//ゴールモデル
 	std::unique_ptr<DirectX::Model> m_pGoal;
+
 	DirectX::SimpleMath::Vector3 m_goalPos;
 	//プレイヤーポジション
 	DirectX::SimpleMath::Vector3 m_playerPos;

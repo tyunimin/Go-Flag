@@ -91,7 +91,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\DirectXTK\Inc;C:\Users\s212257\Desktop\2年生\前期\ゲーム制作演習\3DPG_GS_Model\cri\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\s212257\Desktop\2年生\前期\ゲーム制作演習\3DPG_GS_Model\cri\libs\x64;C:\DirectXTK\Bin\Desktop_2019\x64\Debug;C:\DirectXTK\Bin\Desktop_2019\x64\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\s212257\Desktop\2年生\前期\ゲーム制作演習\3DPG_GS_Model\cri\libs\x64;C:\DirectXTK\Bin\Desktop_2019\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

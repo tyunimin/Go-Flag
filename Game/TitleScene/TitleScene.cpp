@@ -74,7 +74,7 @@ GAME_SCENE TitleScene::Update(const DX::StepTimer& timer)
 	// マウス入力情報を取得する
 	DirectX::Mouse::State mouseState = DirectX::Mouse::Get().GetState();
 
-	if (keyState.Z)
+	if (keyState.Space)
 	{
 		m_cflag = true;
 		//効果音再生
@@ -131,7 +131,7 @@ void TitleScene::Draw()
 
 	m_spriteBatch->Draw(m_texture.Get(), pos);
 
-	m_spriteBatch->Draw(m_texture_Z.Get(), pos_Z, &rec, color, rotation, origin, scale, effects, layerDepth);
+	m_spriteBatch->Draw(m_texture_Space.Get(), pos_Z, &rec, color, rotation, origin, scale, effects, layerDepth);
 	m_spriteBatch->Draw(m_criware_texture.Get(), SimpleMath::Vector2{ 1180,620 },&rec, FXMVECTOR{ 1.0f,1.0f,1.0f,1.0f }, rotation, origin, 0.1f, effects, layerDepth);
 	m_spriteBatch->Draw(m_texture_black.Get(), pos, &rec, black, rotation, origin, scale, effects, layerDepth);
 
@@ -164,9 +164,9 @@ void TitleScene::LoadResources()
 	// テクスチャの読み込み
 	CreateWICTextureFromFile(
 		device,
-		L"Resources/Textures/Push_Z.png",
+		L"Resources/Textures/Push_Space.png",
 		nullptr,
-		m_texture_Z.ReleaseAndGetAddressOf()
+		m_texture_Space.ReleaseAndGetAddressOf()
 	);
 
 	// テクスチャの読み込み

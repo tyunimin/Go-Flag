@@ -28,7 +28,7 @@ private:
 
 	// テクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_Z;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_Space;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_black;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_criware_texture;
 

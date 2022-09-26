@@ -157,7 +157,7 @@ void ResultScene::LoadResources()
 	// テクスチャの読み込み
 	CreateWICTextureFromFile(
 		device,
-		L"Resources/Textures/push_X_button.png",
+		L"Resources/Textures/PushXButton.png",
 		nullptr,
 		m_texture_pushX.ReleaseAndGetAddressOf()
 	);
