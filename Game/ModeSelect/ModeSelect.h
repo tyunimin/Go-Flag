@@ -21,10 +21,13 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_shortmode;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_longmode;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_longmode_hard;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pushZ;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pushX;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pushC;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_black;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_select;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_short_floor;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_long_floor;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_longH_floor;
+
+	DirectX::Keyboard::KeyboardStateTracker m_keyTracker;
 
 	float m_alpha;
 	float m_blackalpha;

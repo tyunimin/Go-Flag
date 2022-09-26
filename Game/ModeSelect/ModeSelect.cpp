@@ -14,7 +14,7 @@ ModeSelect::ModeSelect():
 	m_blackalpha(1.0f),
 	m_flag(false),
 	m_cflag(false),
-	m_SceneSelect(0)
+	m_SceneSelect(1)
 {
 	DX::DeviceResources* pDR = DX::DeviceResources::GetInstance();
 	ID3D11Device1* device = pDR->GetD3DDevice();
@@ -48,31 +48,26 @@ GAME_SCENE ModeSelect::Update(const DX::StepTimer& timer)
 	// キー入力情報を取得する
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
 
-	// マウス入力情報を取得する
-	DirectX::Mouse::State mouseState = DirectX::Mouse::Get().GetState();
+	m_keyTracker.Update(keyState);
 
-	if (keyState.Z)
+	if (keyState.Space)
 	{
-		m_SceneSelect = 1;
 		m_cflag = true;
 		//効果音再生
 		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
 	}
 
-	if (keyState.X)
+	if (m_keyTracker.IsKeyPressed(Keyboard::Down))
 	{
-		m_SceneSelect = 2;
-		m_cflag = true;
-		//効果音再生
-		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
+		m_SceneSelect++;
+		if (m_SceneSelect >= 3)
+			m_SceneSelect = 3;
 	}
-
-	if (keyState.C)
+	if (m_keyTracker.IsKeyPressed(Keyboard::Up))
 	{
-		m_SceneSelect = 3;
-		m_cflag = true;
-		//効果音再生
-		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
+		m_SceneSelect--;
+		if (m_SceneSelect <=1)
+			m_SceneSelect = 1;
 	}
 
 	if (!m_cflag)
@@ -116,19 +111,36 @@ GAME_SCENE ModeSelect::Update(const DX::StepTimer& timer)
 
 void ModeSelect::Draw()
 {
-	FXMVECTOR color = DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_alpha };//原色に指定色を掛け合わせる
+	float rotation = 0.0f;							//回転角度をラジアンで指定する
+	DirectX::SimpleMath::Vector2 origin = { 0,0 };	//回転する中心点の指定
+	float scale = 1.0f;								//拡大率の指定
+	SpriteEffects effects = SpriteEffects_None;		//表示反転効果
+	float layerDepth = 1.0f;						//表示深度
 	FXMVECTOR black = DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha };
 	RECT rect={ 0,0,1280,720 };
 	m_spriteBatch->Begin(SpriteSortMode_Deferred, m_commonState->NonPremultiplied());
-	m_spriteBatch->Draw(m_texture_black.Get(), SimpleMath::Vector3{ 0.0f,0.0f,0.0f }, &rect,SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
-	m_spriteBatch->Draw(m_selectmode.Get(), SimpleMath::Vector3{ 0.0f,0.0f,0.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
-	m_spriteBatch->Draw(m_pushZ.Get(), SimpleMath::Vector3{ 605.0f,225.0f,0.0f }, &rect, color);
-	m_spriteBatch->Draw(m_pushX.Get(), SimpleMath::Vector3{ 640.0f,370.0f,0.0f }, &rect, color);
-	m_spriteBatch->Draw(m_pushC.Get(), SimpleMath::Vector3{ 640.0f,555.0f,0.0f }, &rect, color);
-	m_spriteBatch->Draw(m_shortmode.Get(), SimpleMath::Vector3{ 100.0f,185.0f,0.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
-	m_spriteBatch->Draw(m_longmode.Get(), SimpleMath::Vector3{ 100.0f,370.0f,0.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
-	m_spriteBatch->Draw(m_longmode_hard.Get(), SimpleMath::Vector3{ 100.0f,555.0f,0.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
-	m_spriteBatch->Draw(m_texture_black.Get(), SimpleMath::Vector3{ 0.0f,0.0f,0.0f }, &rect, black);
+	m_spriteBatch->Draw(m_texture_black.Get(), SimpleMath::Vector2{ 0.0f,0.0f }, &rect,SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_selectmode.Get(), SimpleMath::Vector2{ 0.0f,0.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_shortmode.Get(), SimpleMath::Vector2{ 100.0f,155.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_short_floor.Get(), SimpleMath::Vector2{ 640.0f,155.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_longmode.Get(), SimpleMath::Vector2{ 100.0f,345.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_long_floor.Get(), SimpleMath::Vector2{ 640.0f,345.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_longmode_hard.Get(), SimpleMath::Vector2{ 100.0f,515.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+	m_spriteBatch->Draw(m_longH_floor.Get(), SimpleMath::Vector2{ 640.0f,515.0f }, &rect, SimpleMath::Vector4{ 1.0f,1.0f,1.0f,1.0f });
+
+	switch (m_SceneSelect)
+	{
+	case 1:
+		m_spriteBatch->Draw(m_select.Get(), SimpleMath::Vector2{ 0.0f,185.0f });
+		break;
+	case 2:
+		m_spriteBatch->Draw(m_select.Get(), SimpleMath::Vector2{ 0.0f,370.0f });
+		break;
+	case 3:
+		m_spriteBatch->Draw(m_select.Get(), SimpleMath::Vector2{ 0.0f,555.0f });
+		break;
+	}
+	m_spriteBatch->Draw(m_texture_black.Get(), SimpleMath::Vector2{ 0.0f,0.0f }, & rect, black);
 	m_spriteBatch->End();
 }
 
@@ -150,24 +162,6 @@ void ModeSelect::LoadResources()
 		L"Resources/Textures/black.png",
 		nullptr,
 		m_texture_black.ReleaseAndGetAddressOf()
-	);
-	CreateWICTextureFromFile(
-		device,
-		L"Resources/Textures/Push_Z.png",
-		nullptr,
-		m_pushZ.ReleaseAndGetAddressOf()
-	);
-	CreateWICTextureFromFile(
-		device,
-		L"Resources/Textures/PushXButton.png",
-		nullptr,
-		m_pushX.ReleaseAndGetAddressOf()
-	);
-	CreateWICTextureFromFile(
-		device,
-		L"Resources/Textures/PushCButton.png",
-		nullptr,
-		m_pushC.ReleaseAndGetAddressOf()
 	);
 	CreateWICTextureFromFile(
 		device,
@@ -193,4 +187,33 @@ void ModeSelect::LoadResources()
 		nullptr,
 		m_selectmode.ReleaseAndGetAddressOf()
 	);
+	CreateWICTextureFromFile
+	(
+		device,
+		L"Resources/Textures/Select.png",
+		nullptr,
+		m_select.ReleaseAndGetAddressOf()
+	);
+	CreateWICTextureFromFile
+	(
+		device,
+		L"Resources/Textures/short_floor.png",
+		nullptr,
+		m_short_floor.ReleaseAndGetAddressOf()
+	);
+	CreateWICTextureFromFile
+	(
+		device,
+		L"Resources/Textures/long_floor.png",
+		nullptr,
+		m_long_floor.ReleaseAndGetAddressOf()
+	);
+	CreateWICTextureFromFile
+	(
+		device,
+		L"Resources/Textures/longH_floor.png",
+		nullptr,
+		m_longH_floor.ReleaseAndGetAddressOf()
+	);
+
 }

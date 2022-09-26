@@ -123,8 +123,10 @@ GAME_SCENE LongMode_HARD::Update(const DX::StepTimer& timer)
 
 	//フェード関係--------------------------------------------------
 	SimpleMath::Vector3 Pos = m_playerPos;
-	if (Pos.y < -1.0f|| m_Sceneflag)
+	if (Pos.y < -1.0f)
 		{m_blackalpha += 0.01f;}
+	if (m_Sceneflag == true)
+		m_blackalpha += 0.01f;
 	if (m_blackalpha >= 0.0f && m_cflag == false)
 		{m_blackalpha -= 0.01f;}
 	if (m_blackalpha < 0.0f && m_cflag == false)
@@ -315,7 +317,7 @@ void LongMode_HARD::MoveFloor()
 	{
 		if (moveflag == false)
 		{
-			movecount += 0.005f;
+			movecount += 0.001f;
 			m_floorPos[i].x += movecount;
 			if (HitCheck(m_playerPos, m_floorPos[i], 1.0f, 1.0f, 1.0f))
 			{
@@ -326,7 +328,7 @@ void LongMode_HARD::MoveFloor()
 			moveflag = true;
 		if (moveflag == true)
 		{
-			movecount -= 0.005f;
+			movecount -= 0.001f;
 			m_floorPos[i].x += movecount;
 			if (HitCheck(m_playerPos, m_floorPos[i], 1.0f, 1.0f, 1.0f))
 			{
@@ -336,6 +338,7 @@ void LongMode_HARD::MoveFloor()
 		if (movecount < -0.1f)
 			moveflag = false;
 	}
+	m_goalPos.x = m_floorPos[FLOOR-1].x;
 }
 
 //当たり判定

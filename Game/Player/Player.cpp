@@ -126,22 +126,22 @@ void Player::Rotation()
 //•à‚«
 void Player::Move(DirectX::Keyboard::State KeyState)
 {
-	if (KeyState.W)
+	if (KeyState.W||KeyState.Up)
 	{
 		m_vel.z = 0.1f;
 		m_position.z -= m_vel.z;
 	}
-	if (KeyState.S)
+	if (KeyState.S||KeyState.Down)
 	{
 		m_vel.z = 0.1f;
 		m_position.z += m_vel.z;
 	}
-	if (KeyState.A)
+	if (KeyState.A||KeyState.Left)
 	{
 		m_vel.x = 0.1f;
 		m_position.x -= m_vel.x;
 	}
-	if (KeyState.D)
+	if (KeyState.D||KeyState.Right)
 	{
 		m_vel.x = 0.1f;
 		m_position.x += m_vel.x;
