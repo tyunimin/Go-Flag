@@ -50,7 +50,7 @@ GAME_SCENE ModeSelect::Update(const DX::StepTimer& timer)
 
 	m_keyTracker.Update(keyState);
 
-	if (keyState.Space)
+	if (m_keyTracker.IsKeyPressed(Keyboard::Space))
 	{
 		m_cflag = true;
 		//Œø‰Ê‰¹Ä¶

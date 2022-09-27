@@ -74,7 +74,7 @@ GAME_SCENE ResultScene::Update(const DX::StepTimer& timer)
 	// ƒ}ƒEƒX“ü—Íî•ñ‚ðŽæ“¾‚·‚é
 	DirectX::Mouse::State mouseState = DirectX::Mouse::Get().GetState();
 
-	if (keyState.X)
+	if (m_keyTracker.IsKeyPressed(Keyboard::Space))
 	{
 		m_cflag = true;
 		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);

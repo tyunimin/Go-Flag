@@ -77,13 +77,15 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 	if(HitCheck(m_playerPos,SimpleMath::Vector3(0.0f,0.0f,0.0f),12.0f,0.5f,12.0f))
 	{
 		if (m_playerPos.y < -0.02f)
+		{
 			m_playerPos.y = 0.0f;
+			m_pPlayer->JumpCountHeal();
+			m_playerJcount = 0;
+		}
 		m_pPlayer->SetPosition(m_playerPos);
-		m_pPlayer->JumpCountHeal();
-		m_playerJcount = 0;
 	}
 	//‰œ‚Ì•Ç‚Ì“–‚½‚è”»’è
-	if (HitCheck(m_playerPos, m_wall_back, 25.0f, 2000.0f, 1.0f))
+	if (HitCheck(m_playerPos, m_wall_back, 25.0f, 2500.0f, 1.0f))
 	{
 		m_playerPos.z = m_wall_back.z + 1.0f;
 		m_pPlayer->SetPosition(m_playerPos);
@@ -141,6 +143,9 @@ GAME_SCENE LongMode::Update(const DX::StepTimer& timer)
 		m_playerJcount++;
 	if (m_playerJcount > 1)
 		m_playerJcount = 2;
+
+	m_pPlayer->GetJumpCount(m_playerJcount);
+
 	return GAME_SCENE::NONE;
 }
 
@@ -170,8 +175,8 @@ void LongMode::Draw()
 
 	//‰œ‚Ì•Ç---------------------------------------------------------------------------------
 	world = DirectX::SimpleMath::Matrix::Identity;
-	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 4200.0f, 1.0f);
-	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_wall_back.x, m_wall_back.y+990.0f, m_wall_back.z);
+	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 3000.0f, 1.0f);
+	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_wall_back.x, m_wall_back.y+900.0f, m_wall_back.z);
 	m_pwall->Draw(context, *m_commonState.get(), world, view, projection);
 	//---------------------------------------------------------------------------------------
 

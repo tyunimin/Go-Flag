@@ -31,6 +31,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_black;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_pushX;
 
+	DirectX::Keyboard::KeyboardStateTracker m_keyTracker;
+
 	float m_pushX;
 	float m_blackalpha;
 	bool m_cflag;

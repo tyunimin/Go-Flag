@@ -74,7 +74,7 @@ GAME_SCENE TitleScene::Update(const DX::StepTimer& timer)
 	// ƒ}ƒEƒX“ü—Íî•ñ‚ğæ“¾‚·‚é
 	DirectX::Mouse::State mouseState = DirectX::Mouse::Get().GetState();
 
-	if (keyState.Space)
+	if (m_keyTracker.IsKeyPressed(Keyboard::Space))
 	{
 		m_cflag = true;
 		//Œø‰Ê‰¹Ä¶

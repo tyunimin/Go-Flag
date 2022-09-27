@@ -328,6 +328,8 @@ GAME_SCENE PlayScene::Update(const DX::StepTimer& timer)
 	if (m_playerJcount > 1)
 		m_playerJcount = 2;
 
+	m_pPlayer->GetJumpCount(m_playerJcount);
+
 	return GAME_SCENE::NONE;
 }
 
@@ -370,7 +372,7 @@ void PlayScene::Draw()
 
 	//‰œ‚Ì•Ç---------------------------------------------------------------------------------
 	world = DirectX::SimpleMath::Matrix::Identity;
-	world *= DirectX::SimpleMath::Matrix::CreateScale(35.0f, 80.0f, 1.0f);
+	world *= DirectX::SimpleMath::Matrix::CreateScale(25.0f, 80.0f, 1.0f);
 	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_wall_back.x, m_wall_back.y, m_wall_back.z);
 	m_pwall->Draw(context, *m_commonState.get(), world, view, projection);
 	//---------------------------------------------------------------------------------------
@@ -485,18 +487,18 @@ void PlayScene::Draw()
 	}
 	m_spriteBatch->End();
 
-	m_spriteBatch->Begin
-	(DirectX::SpriteSortMode_Deferred,
-		m_commonState->NonPremultiplied());
-	std::string strnum = std::to_string(m_playerPos.y);
-	std::wstring_convert
-		<std::codecvt_utf8<wchar_t>, wchar_t> cv;
-	std::wstring wsnum = cv.from_bytes(strnum);
-	m_spriteFont->DrawString
-	(m_spriteBatch.get(),wsnum.c_str(),
-		DirectX::SimpleMath::Vector2(0, 100));
+	//m_spriteBatch->Begin
+	//(DirectX::SpriteSortMode_Deferred,
+	//	m_commonState->NonPremultiplied());
+	//std::string strnum = std::to_string(m_playerPos.y);
+	//std::wstring_convert
+	//	<std::codecvt_utf8<wchar_t>, wchar_t> cv;
+	//std::wstring wsnum = cv.from_bytes(strnum);
+	//m_spriteFont->DrawString
+	//(m_spriteBatch.get(),wsnum.c_str(),
+	//	DirectX::SimpleMath::Vector2(0, 100));
 
-	m_spriteBatch->End();
+	//m_spriteBatch->End();
 }
 
 /*--------------------------------------------------
