@@ -362,6 +362,7 @@ void PlayScene::Draw()
 	float layerDepth = 0.0f;						//表示深度
 
 	RECT rect = { 0,0,1280,720 };
+	RECT rec = { 0,0,50, 600-m_playerPos.y/4.0f*(600/10)};
 
 	//-----ゴール----------------------------------------------------------------------------
 	world = DirectX::SimpleMath::Matrix::Identity;
@@ -485,6 +486,8 @@ void PlayScene::Draw()
 			&rect, SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
 		break;
 	}
+	m_spriteBatch->Draw(m_green_bar.Get(), SimpleMath::Vector2(1220, 60));
+	m_spriteBatch->Draw(m_red_bar.Get(), SimpleMath::Vector2(1220, 60),&rec);
 	m_spriteBatch->End();
 
 	//m_spriteBatch->Begin
@@ -548,6 +551,20 @@ void PlayScene::LoadResources()
 		L"Resources/Textures/JUMP_Icon.png",
 		nullptr,
 		m_jump_Icon.ReleaseAndGetAddressOf()
+	);	
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/green_bar.png",
+		nullptr,
+		m_green_bar.ReleaseAndGetAddressOf()
+	);
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/red_bar.png",
+		nullptr,
+		m_red_bar.ReleaseAndGetAddressOf()
 	);
 
 	// エフェクトファクトリの作成

@@ -29,7 +29,7 @@ private:
 	// テクスチャ
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_black;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_pushX;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_pushSpace;
 
 	DirectX::Keyboard::KeyboardStateTracker m_keyTracker;
 

@@ -77,6 +77,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture_black;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_shortmode_texture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_jump_Icon;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_green_bar;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_red_bar;
 
 	ADX2* m_pAdx2;
 	int m_musicID;

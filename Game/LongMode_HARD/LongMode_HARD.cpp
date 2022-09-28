@@ -165,6 +165,7 @@ void LongMode_HARD::Draw()
 	view = m_pCamera->GetViewMatrix();
 	projection = m_pCamera->GetProjectionMatrix();
 	m_pCamera->SetCameraTarget(m_playerPos);
+	RECT rec = { 0,0,50, 600 - m_playerPos.y / 4.0f * (600 / FLOOR) };
 
 	//ゴールポール-----------------------------------------------------------
 	world = SimpleMath::Matrix::Identity;
@@ -226,6 +227,8 @@ void LongMode_HARD::Draw()
 
 	//モード表示
 	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));
+	m_spriteBatch->Draw(m_green_bar.Get(), SimpleMath::Vector2(1220, 60));
+	m_spriteBatch->Draw(m_red_bar.Get(), SimpleMath::Vector2(1220, 60), &rec);
 	m_spriteBatch->Draw(m_fade_picture.Get(), SimpleMath::Vector2{ 0,0 }, &rect, 
 		SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha });
 	m_spriteBatch->End();
@@ -264,6 +267,20 @@ void LongMode_HARD::LoadResources()
 		L"Resources/Textures/JUMP_Icon.png",
 		nullptr,
 		m_jump_Icon.ReleaseAndGetAddressOf()
+	);
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/green_bar.png",
+		nullptr,
+		m_green_bar.ReleaseAndGetAddressOf()
+	);
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/red_bar.png",
+		nullptr,
+		m_red_bar.ReleaseAndGetAddressOf()
 	);
 
 	// エフェクトファクトリの作成

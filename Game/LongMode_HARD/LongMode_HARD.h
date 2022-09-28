@@ -48,7 +48,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_endless_picture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_fade_picture;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_jump_Icon;
-
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_green_bar;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_red_bar;
 	//フェードイン
 	float m_blackalpha;
 	bool m_cflag;

@@ -193,10 +193,11 @@ void LongMode::Draw()
 
 	//モード表示
 	RECT rect = { 0,0,1280,720 };
+	RECT rec = { 0,0,50, 600 - m_playerPos.y / 4.0f * (600 / 10) };
 	m_spriteBatch->Begin();
-	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));
-	m_spriteBatch->Draw(m_fade_picture.Get(), SimpleMath::Vector2{ 0,0 }, &rect, 
-		SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha });
+	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));	m_spriteBatch->Draw(m_green_bar.Get(), SimpleMath::Vector2(1220, 60));
+	m_spriteBatch->Draw(m_red_bar.Get(), SimpleMath::Vector2(1220, 60), &rec);
+
 	switch (m_playerJcount)
 	{
 	case 0:
@@ -221,6 +222,8 @@ void LongMode::Draw()
 			&rect, SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.0f, SimpleMath::Vector2{ 0.0f,0.0f }, 0.8f);
 		break;
 	}
+	m_spriteBatch->Draw(m_fade_picture.Get(), SimpleMath::Vector2{ 0,0 }, & rect,
+		SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha });
 
 	m_spriteBatch->End();
 }
@@ -258,6 +261,20 @@ void LongMode::LoadResources()
 		L"Resources/Textures/JUMP_Icon.png",
 		nullptr,
 		m_jump_Icon.ReleaseAndGetAddressOf()
+	);
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/green_bar.png",
+		nullptr,
+		m_green_bar.ReleaseAndGetAddressOf()
+	);
+	// 画像の読み込み
+	CreateWICTextureFromFile(
+		device,
+		L"Resources/Textures/red_bar.png",
+		nullptr,
+		m_red_bar.ReleaseAndGetAddressOf()
 	);
 
 	// エフェクトファクトリの作成

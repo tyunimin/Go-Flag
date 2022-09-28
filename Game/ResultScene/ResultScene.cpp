@@ -73,6 +73,7 @@ GAME_SCENE ResultScene::Update(const DX::StepTimer& timer)
 
 	// マウス入力情報を取得する
 	DirectX::Mouse::State mouseState = DirectX::Mouse::Get().GetState();
+	m_keyTracker.Update(keyState);
 
 	if (m_keyTracker.IsKeyPressed(Keyboard::Space))
 	{
@@ -85,7 +86,6 @@ GAME_SCENE ResultScene::Update(const DX::StepTimer& timer)
 	{
 		m_blackalpha = 0.0f;
 	}
-
 
 	if(!m_pushXflag)
 		m_pushX += 0.01f;
@@ -102,7 +102,6 @@ GAME_SCENE ResultScene::Update(const DX::StepTimer& timer)
 	if (m_blackalpha >= 1.1f)
 		return GAME_SCENE::TITLE;
 
-
 	return GAME_SCENE::NONE;
 }
 
@@ -118,7 +117,7 @@ void ResultScene::Draw()
 
 	m_spriteBatch->Draw(m_texture.Get(), pos);
 
-	m_spriteBatch->Draw(m_texture_pushX.Get(), position, DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_pushX });
+	m_spriteBatch->Draw(m_texture_pushSpace.Get(), position, DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_pushX });
 	m_spriteBatch->Draw(m_texture_black.Get(), pos, DirectX::SimpleMath::Vector4{ 1.0f,1.0f,1.0f,m_blackalpha });
 	
 	m_spriteBatch->End();
@@ -157,8 +156,8 @@ void ResultScene::LoadResources()
 	// テクスチャの読み込み
 	CreateWICTextureFromFile(
 		device,
-		L"Resources/Textures/PushXButton.png",
+		L"Resources/Textures/Push_Space.png",
 		nullptr,
-		m_texture_pushX.ReleaseAndGetAddressOf()
+		m_texture_pushSpace.ReleaseAndGetAddressOf()
 	);
 }

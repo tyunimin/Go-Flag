@@ -57,13 +57,13 @@ GAME_SCENE ModeSelect::Update(const DX::StepTimer& timer)
 		m_pAdx2->Play(CRI_CUESHEET_0_A5_02036);
 	}
 
-	if (m_keyTracker.IsKeyPressed(Keyboard::Down))
+	if (m_keyTracker.IsKeyPressed(Keyboard::Down)||m_keyTracker.IsKeyPressed(Keyboard::S))
 	{
 		m_SceneSelect++;
 		if (m_SceneSelect >= 3)
 			m_SceneSelect = 3;
 	}
-	if (m_keyTracker.IsKeyPressed(Keyboard::Up))
+	if (m_keyTracker.IsKeyPressed(Keyboard::Up) || m_keyTracker.IsKeyPressed(Keyboard::W))
 	{
 		m_SceneSelect--;
 		if (m_SceneSelect <=1)
