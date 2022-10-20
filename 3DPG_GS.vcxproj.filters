@@ -65,6 +65,9 @@
     <Filter Include="Game\ModeSelect">
       <UniqueIdentifier>{23802033-4dd0-4976-b1ff-511b8910babf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{5cb27925-5c9f-4004-a75b-1385052a812d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -129,6 +132,15 @@
     <ClInclude Include="Game\ModeSelect\ModeSelect.h">
       <Filter>Game\ModeSelect</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\Move_floor.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Stop_floor.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\CountDown.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -175,6 +187,15 @@
     </ClCompile>
     <ClCompile Include="Game\ModeSelect\ModeSelect.cpp">
       <Filter>Game\ModeSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Move_floor.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Stop_floor.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\CountDown.cpp">
+      <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

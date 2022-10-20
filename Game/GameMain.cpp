@@ -24,7 +24,7 @@ using namespace DirectX;
 // コンストラクタ
 //-------------------------------------------------------------------
 GameMain::GameMain()
-	: m_nextScene(GAME_SCENE::TITLE)		// 初期シーンの設定
+	: m_nextScene(GAME_SCENE::PLAY)		// 初期シーンの設定
 	, m_pScene(nullptr)
 {
 }

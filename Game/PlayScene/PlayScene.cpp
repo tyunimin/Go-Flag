@@ -34,6 +34,7 @@ PlayScene::PlayScene():
 
 	m_pDebugCamera = std::make_unique<Camera>();
 	m_pPlayer = std::make_unique<Player>();
+	m_Mfloor = std::make_unique<Move_floor>();
 
 	//	コモンステート::D3Dレンダリング状態オブジェクト
 	m_commonState = std::make_unique<DirectX::CommonStates>(device);
@@ -95,6 +96,11 @@ void PlayScene::Initialize()
 	m_wall_back = { 0.0f,9.0f,-12.0f };
 
 	m_NumPos = { 400,10 };
+
+	m_Mfloor->Initialize(SimpleMath::Vector3(0.0f, 4.0f, 0.0f), 1);
+
+	m_CountDown = std::make_unique<CountDown>();
+	m_CountDown->Initialize(3000);
 }
 
 /*--------------------------------------------------
@@ -105,9 +111,29 @@ GAME_SCENE PlayScene::Update(const DX::StepTimer& timer)
 {
 	// キー入力情報を取得する
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
-
 	m_pPlayer->Update();
 	m_playerPos = m_pPlayer->GetPosition();
+	m_Mfloor->Update(1);
+	m_Movefloor = m_Mfloor->GetPos(1);
+	float vel = m_Mfloor->Move(1);
+	if (HitCheck(m_playerPos, m_Movefloor, 1.0f, 1.0f, 1.0f))
+	{
+		if (m_playerPos.y > m_Movefloor.y)
+		{
+			m_playerPos.y = m_Movefloor.y + 1.0f;
+			m_playerPos.x += vel+vel;
+			m_pPlayer->SetPosition(m_playerPos);
+			m_pPlayer->JumpCountHeal();
+			m_playerJcount = 0;
+		}
+		else
+		{
+			m_playerPos.y = m_Movefloor.y - 1.0f;
+			m_pPlayer->SetPosition(m_playerPos);
+		}
+	}
+
+	m_CountDown->Update(timer);
 
 	//全てのAABBを変える
 
@@ -454,6 +480,10 @@ void PlayScene::Draw()
 	m_pFloor->Draw(context, *m_commonState.get(), world, view, projection);
 	//---------------------------------------------------------------------------------------
 
+	world = DirectX::SimpleMath::Matrix::Identity;
+	world *= SimpleMath::Matrix::CreateTranslation(m_Movefloor);
+	m_pFloor->Draw(context, *m_commonState.get(), world, view, projection);
+
 	m_pPlayer->Render(view,projection);
 
 	m_spriteBatch->Begin();
@@ -502,6 +532,8 @@ void PlayScene::Draw()
 	//	DirectX::SimpleMath::Vector2(0, 100));
 
 	//m_spriteBatch->End();
+
+	m_CountDown->Draw();
 }
 
 /*--------------------------------------------------
@@ -528,7 +560,7 @@ void PlayScene::LoadResources()
 	// D3Dデバイスとデバイスコンテキストの取得
 	ID3D11Device1* device = pDR->GetD3DDevice();
 
-	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::this_thread::sleep_for(std::chrono::seconds(0));
 
 	// 画像の読み込み
 	CreateWICTextureFromFile(

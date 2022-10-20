@@ -193,9 +193,10 @@ void LongMode::Draw()
 
 	//ƒ‚[ƒh•\Ž¦
 	RECT rect = { 0,0,1280,720 };
-	RECT rec = { 0,0,50, 600 - m_playerPos.y / 4.0f * (600 / 10) };
+	RECT rec = { 0,0,50, 600 - m_playerPos.y / 4.0f * (600 / FLOOR) };
 	m_spriteBatch->Begin();
-	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));	m_spriteBatch->Draw(m_green_bar.Get(), SimpleMath::Vector2(1220, 60));
+	m_spriteBatch->Draw(m_endless_picture.Get(), SimpleMath::Vector2(0, 0));	
+	m_spriteBatch->Draw(m_green_bar.Get(), SimpleMath::Vector2(1220, 60));
 	m_spriteBatch->Draw(m_red_bar.Get(), SimpleMath::Vector2(1220, 60), &rec);
 
 	switch (m_playerJcount)

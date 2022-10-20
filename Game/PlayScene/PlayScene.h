@@ -8,11 +8,14 @@
 #include "../IScene.h"
 #include"../Player/Player.h"
 #include "Libraries/MyLibraries/Camera.h"
+#include "../Object/CountDown.h"
 
 #include <Model.h>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>
 #include<random>
+
+#include"Game/Object/Move_floor.h"
 
 #include"Libraries/ADX2/Adx2.h"
 
@@ -52,6 +55,9 @@ private:
 	DirectX::SimpleMath::Vector3 m_skyfloorPos8;
 	DirectX::SimpleMath::Vector3 m_skyfloorPos9;
 
+	std::unique_ptr<Move_floor> m_Mfloor;
+	DirectX::SimpleMath::Vector3 m_Movefloor;
+
 	std::unique_ptr<DirectX::Model> m_pStairs;
 
 	std::unique_ptr<DirectX::Model> m_pwall;
@@ -85,6 +91,8 @@ private:
 
 	int m_playerJcount;
 	DirectX::Keyboard::KeyboardStateTracker m_keyTracker;
+
+	std::unique_ptr<CountDown> m_CountDown;
 public:
 	// コンストラクタ
 	PlayScene();
