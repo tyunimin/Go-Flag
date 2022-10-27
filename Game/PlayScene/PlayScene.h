@@ -25,6 +25,9 @@
 class PlayScene : public IScene
 {
 private:
+	//フロア数
+	static const int FLOOR = 10;
+
 	// コモンステート
 	std::unique_ptr<DirectX::CommonStates> m_commonState;
 	// スプライトバッチ
@@ -44,19 +47,7 @@ private:
 	DirectX::SimpleMath::Vector3 m_groundPos;
 
 	std::unique_ptr<DirectX::Model> m_pFloor;
-	DirectX::SimpleMath::Vector3 m_floorPos;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos2;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos3;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos4;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos5;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos6;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos7;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos8;
-	DirectX::SimpleMath::Vector3 m_skyfloorPos9;
-
-	std::unique_ptr<Move_floor> m_Mfloor;
-	DirectX::SimpleMath::Vector3 m_Movefloor;
+	DirectX::SimpleMath::Vector3 m_floorPos[FLOOR];
 
 	std::unique_ptr<DirectX::Model> m_pStairs;
 

@@ -262,24 +262,24 @@
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MeshContentTask>
     <MeshContentTask Include="Resources\Assets\floor.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MeshContentTask>
     <MeshContentTask Include="Resources\Assets\Goal.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
@@ -290,24 +290,24 @@
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MeshContentTask>
     <MeshContentTask Include="Resources\Assets\Ground.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MeshContentTask>
     <MeshContentTask Include="Resources\Assets\kaidan.fbx">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -316,9 +316,9 @@
     <MeshContentTask Include="Resources\Assets\Sky.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
@@ -326,8 +326,8 @@
     <MeshContentTask Include="Resources\Assets\wall.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Models\%(Filename).cmo</ContentOutput>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MeshContentTask>

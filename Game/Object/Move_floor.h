@@ -1,5 +1,6 @@
 #pragma once
 #include<SimpleMath.h>
+#include<Model.h>
 
 class Move_floor
 {
@@ -10,6 +11,7 @@ private:
 	float m_vel;
 	//è∞èÓïÒ
 	DirectX::SimpleMath::Vector3 m_floorPos[FLOOR];
+	std::unique_ptr<DirectX::Model> m_floor;
 public:
 	Move_floor();
 	~Move_floor();
